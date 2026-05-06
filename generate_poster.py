@@ -130,7 +130,7 @@ def main():
         f.write(f"""<!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"><title>AI Monthly Poster</title><style>body{{text-align:center;background:#0a0a2a;color:white;}} img{{max-width:90%;border-radius:16px;margin:20px;}}</style></head>
-<body><h1>AI 月度作品集</h1><img src="{poster}" alt="AI Monthly Poster"><p>自动更新于 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p></body>
+<body><h1>AI 作品集</h1><img src="{poster}" alt="AI Monthly Poster"><p>自动更新于 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p></body>
 </html>""")
     print("index.html已生成")
 
