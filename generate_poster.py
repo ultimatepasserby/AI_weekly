@@ -113,7 +113,7 @@ def compose_poster(bg_path, news_data, output_path="final_poster.png"):
 
 # ---------- 主函数 ----------
 def main():
-    print("联网搜索本月AI新闻...")
+    print("联网搜索AI新闻...")
     news = fetch_ai_news()
     print("新闻提取完成")
     
