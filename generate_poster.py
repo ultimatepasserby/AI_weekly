@@ -91,8 +91,8 @@ def compose_poster(bg_path, news_data, output_path="final_poster.png"):
     news_title_font = ImageFont.truetype(font_file, 35)
     news_summary_font = ImageFont.truetype(font_file, 25)
     
-    draw.text((width//2, 70), "🤖 AI 月度热点", fill="white", anchor="mt", font=title_font)
-    draw.text((width//2, 150), news_data["month"], fill="#CCCCCC", anchor="mt", font=sub_font)
+    draw.text((width//2, 70), "AI一周热点", fill="white", anchor="mt", font=title_font)
+    draw.text((width//2, 150), news_data["week"], fill="#CCCCCC", anchor="mt", font=sub_font)
     draw.text((width//2, 220), news_data["summary_title"], fill="#FFD966", anchor="mt", font=sub_font)
     
     y = 320
