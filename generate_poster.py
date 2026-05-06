@@ -4,6 +4,7 @@ import requests
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 import textwrap
+from datetime import datetime, timedelta
 
 def fetch_ai_news():
     url = "https://api.deepseek.com/v1/chat/completions"
@@ -12,19 +13,19 @@ def fetch_ai_news():
         "Content-Type": "application/json"
     }
     now = datetime.now()
-    if now.month == 1:
-        last_month = now.replace(year=now.year-1, month=12, day=1)
-    else:
-        last_month = now.replace(month=now.month-1, day=1)
-    month_str = last_month.strftime("%Y年%m月")
+
+    days_to_last_monday = (now.weekday() + 7) % 7 + 1  
+    last_monday = now - timedelta(days=days_to_last_monday)
+    last_sunday = last_monday + timedelta(days=6)
+    week_range_str = f"{last_monday.strftime('%Y年%m月%d日')} - {last_sunday.strftime('%m月%d日')}"
     
-    prompt = f"""今天是{now.strftime('%Y年%m月%d日')}。请搜索并总结{month_str}人工智能领域最重要的5条新闻或技术突破。
+    prompt = f"""今天是{now.strftime('%Y年%m月%d日')}。请搜索并总结上周（{week_range_str}）人工智能领域最重要的5条新闻或技术突破。
 要求：
 1. 输出JSON格式，不要有其他额外文字。
 2. 结构如下：
 {{
-    "month": "{month_str}",
-    "summary_title": "一句话总结本月AI热点（20字以内）",
+    "week": "{week_range_str}",
+    "summary_title": "一句话总结本周AI热点（20字以内）",
     "news": [
         {{"title": "新闻标题（15字以内）", "summary": "一句话摘要（50字以内）"}},
         ...
