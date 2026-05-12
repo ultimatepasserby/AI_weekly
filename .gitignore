@@ -1,0 +1,10 @@
+.env
+*.env
+api.json
+secrets.json
+__pycache__/
+*.pyc
+background.png
+final_poster.png
+.vscode/
+.idea/

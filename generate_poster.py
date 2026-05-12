@@ -7,6 +7,10 @@ import requests
 from datetime import datetime, timedelta
 from PIL import Image, ImageDraw, ImageFont
 import textwrap
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 def fetch_ai_news():
     """调用 DeepSeek API（强制联网搜索），返回上周 AI 新闻的 JSON 数据"""
@@ -16,7 +20,7 @@ def fetch_ai_news():
         "Content-Type": "application/json"
     }
 
-    # 计算上周一和上周日（完全属于过去的一周）
+    # 计算上周一到上周日
     today = datetime.now()
     offset_to_this_monday = today.weekday()          # 本周一偏移量（周一=0）
     this_monday = today - timedelta(days=offset_to_this_monday)
