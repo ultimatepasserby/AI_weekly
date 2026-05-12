@@ -1,9 +1,9 @@
-name: Monthly AI Poster
+name: Weekly AI Poster
 
 on:
   schedule:
-    - cron: '0 3 * * 1'   # 每周一凌晨3点运行
-  workflow_dispatch:       # 允许手动触发
+    - cron: '0 3 * * 1'   # 每周一3点运行
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,10 +20,10 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python generate_poster.py
-      - name: Commit & push
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
           git add final_poster.png background.png index.html
-          git diff --quiet && git diff --staged --quiet || git commit -m "Auto poster $(date +'%Y-%m')"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Weekly poster $(date +'%Y-%m-%d')"
           git push
